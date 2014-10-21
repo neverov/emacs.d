@@ -1,0 +1,16 @@
+bower install gss
+ll
+ls -R
+git status
+la -a
+ls -a
+ls -la
+ls -l
+robot
+cd Dropbox/Work/generalrhetoric/robot/
+sbt gen-ensime
+sbt
+sbt
+sbt
+(getenv "PATH")
+sbt
