@@ -4,6 +4,9 @@
   '("melpa" . "http://melpa.milkbox.net/packages/"))
 (package-initialize)
 
+(when (not package-archive-contents)
+  (package-refresh-contents))
+
 ;; monokai theme
 (load-theme 'monokai t)
 
@@ -25,12 +28,10 @@
 (projectile-global-mode)
 
 ;; eshell PATH mangling
-;(defun eshell-mode-hook-fun ()
-;  (setq eshell-path-env (concat "/usr/local/bin:" eshell-path-env))
-;  (setenv "PATH" (concat "/usr/local/bin:" (getenv "PATH")))
-;(add-hook 'eshell-mode-hook 'eshell-mode-hook-fun)
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
 
-;; default size
+;; default window size
 (if (window-system)
   (set-frame-size (selected-frame) 124 40))
 
@@ -39,6 +40,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(auto-save-interval 10)
+ '(auto-save-timeout 1)
+ '(desktop-save t)
+ '(desktop-save-mode t)
+ '(mouse-wheel-scroll-amount (quote (1e-11 ((shift) . 1) ((control)))))
  '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

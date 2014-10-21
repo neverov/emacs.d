@@ -1,1 +1,1 @@
-("~/Dropbox/Work/generalrhetoric/robot/" "~/Dropbox/Development/Code/javascript/gss/")
+("~/.emacs.d/" "~/Dropbox/Development/Code/scala/ProjectEuler/" "~/Dropbox/Development/Code/scala/rafter/" "~/Dropbox/Work/generalrhetoric/robot/" "~/Dropbox/Development/Code/javascript/gss/")
