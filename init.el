@@ -7,12 +7,12 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 
+;; eshell PATH mangling
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
+
 ;; monokai theme
 (load-theme 'monokai t)
-
-;; solarized theme
-;;(add-to-list 'load-path "~/.emacs.d/emacs-color-theme-solarized")
-;;(require 'solarized-dark-theme)
 
 ;; neotree
 (add-to-list 'load-path "~/.emacs.d/neotree")
@@ -27,13 +27,12 @@
 (require 'projectile)
 (projectile-global-mode)
 
-;; eshell PATH mangling
-(when (memq window-system '(mac ns))
-  (exec-path-from-shell-initialize))
-
 ;; default window size
 (if (window-system)
   (set-frame-size (selected-frame) 124 40))
+
+(setq ring-bell-function 
+      (lambda ()))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -41,11 +40,12 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(auto-save-interval 10)
- '(auto-save-timeout 1)
+ '(auto-save-timeout 10)
  '(desktop-save t)
  '(desktop-save-mode t)
  '(mouse-wheel-scroll-amount (quote (1e-11 ((shift) . 1) ((control)))))
- '(tool-bar-mode nil))
+ '(tool-bar-mode nil)
+ '(visible-bell nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
