@@ -12,7 +12,8 @@
   (exec-path-from-shell-initialize))
 
 ;; monokai theme
-(load-theme 'monokai t)
+;(load-theme 'monokai t)
+(load-theme 'spacegray t)
 
 ;; neotree
 (add-to-list 'load-path "~/.emacs.d/neotree")
@@ -34,6 +35,8 @@
 (setq ring-bell-function 
       (lambda ()))
 
+(setq-default cursor-type 'bar)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -44,6 +47,7 @@
  '(desktop-save t)
  '(desktop-save-mode t)
  '(mouse-wheel-scroll-amount (quote (1e-11 ((shift) . 1) ((control)))))
+ '(show-paren-mode t)
  '(tool-bar-mode nil)
  '(visible-bell nil))
 (custom-set-faces
