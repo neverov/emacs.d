@@ -32,10 +32,19 @@
 (if (window-system)
   (set-frame-size (selected-frame) 124 40))
 
+;; disables stupid ring sound when scrolled to the end of the buffer
 (setq ring-bell-function 
       (lambda ()))
 
+;; sets default cursor to a thin bar line
 (setq-default cursor-type 'bar)
+
+;; auto insert mathcing brackets
+(electric-pair-mode t)
+
+;; selected text is deleted on input
+(transient-mark-mode t)
+(delete-selection-mode t)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
