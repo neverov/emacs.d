@@ -46,6 +46,11 @@
 (transient-mark-mode t)
 (delete-selection-mode t)
 
+;; autosave on lost focus
+(add-hook 'focus-out-hook
+	  (lambda ()
+	    (save-some-buffers t)))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
