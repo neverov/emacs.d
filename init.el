@@ -16,6 +16,16 @@
 (add-to-list 'load-path "~/.emacs.d/themes/tomorrow-theme")
 (load-theme 'tomorrow-night-bright t)
 
+;; font settings
+(when window-system
+  (set-face-font 'default "Anonymous Pro-16"))
+
+(print (font-family-list))
+
+;(custom-set-faces
+;  '(fixed-pitch ((t nil)))
+;  '(variable-pitch ((t nil))))
+
 ;; neotree
 (add-to-list 'load-path "~/.emacs.d/neotree")
 (require 'neotree)
@@ -52,8 +62,14 @@
 	    (save-some-buffers t)))
 
 ;; smooth-scrolling
-(add-to-list 'load-path "~/.emacs.d/modules/smooth-scrolling")
-(require 'smooth-scrolling)
+;(add-to-list 'load-path "~/.emacs.d/modules/smooth-scrolling")
+;(require 'smooth-scrolling)
+(setq redisplay-dont-pause t
+      scroll-margin 7
+      scroll-step 1
+      scroll-conservatively 10000
+      scroll-preserve-screen-position 1
+      mouse-wheel-scroll-amount '(1 ((shift) . 1)))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
