@@ -12,19 +12,38 @@
   (exec-path-from-shell-initialize))
 
 ;; tomorrow theme
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/tomorrow-theme")
-(add-to-list 'load-path "~/.emacs.d/themes/tomorrow-theme")
-(load-theme 'tomorrow-night-bright t)
+;(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/tomorrow-theme")
+;(add-to-list 'load-path "~/.emacs.d/themes/tomorrow-theme")
+;(load-theme 'tomorrow-night-bright t)
+
+;; wombat default theme
+(load-theme 'wombat t)
 
 ;; font settings
 (when window-system
-  (set-face-font 'default "Anonymous Pro-16"))
+  (set-face-font 'default "Ubuntu Mono-16"))
 
-(print (font-family-list))
+(custom-set-faces
+ '(fixed-pitch ((t nil)))
+ '(variable-pitch ((t nil))))
 
-;(custom-set-faces
-;  '(fixed-pitch ((t nil)))
-;  '(variable-pitch ((t nil))))
+;; yes-or-no prompt
+(fset 'yes-or-no-p 'y-or-n-p)
+
+;; ido 
+(setq ido-create-new-buffer 'always)
+
+;; startup messages
+(setq inhibit-startup-message t)
+(setq inhibit-startup-echo-area-message t)
+
+;; nonexistent buffers
+(setq confirm-nonexistent-file-or-buffer nil)
+
+;; kill buffers prompt
+(setq kill-buffer-query-functions
+      (remq 'process-kill-buffer-query-function
+	    kill-buffer-query-functions))
 
 ;; neotree
 (add-to-list 'load-path "~/.emacs.d/neotree")
@@ -62,8 +81,6 @@
 	    (save-some-buffers t)))
 
 ;; smooth-scrolling
-;(add-to-list 'load-path "~/.emacs.d/modules/smooth-scrolling")
-;(require 'smooth-scrolling)
 (setq redisplay-dont-pause t
       scroll-margin 7
       scroll-step 1
@@ -78,17 +95,9 @@
  ;; If there is more than one, they won't work right.
  '(auto-save-interval 10)
  '(auto-save-timeout 10)
- '(custom-safe-themes
-   (quote
-    ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "e16a771a13a202ee6e276d06098bc77f008b73bbac4d526f160faa2d76c1dd0e" default)))
  '(desktop-save t)
  '(desktop-save-mode t)
  '(show-paren-mode t)
  '(tool-bar-mode nil)
  '(visible-bell nil))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+
