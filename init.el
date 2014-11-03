@@ -16,14 +16,19 @@
 ;(add-to-list 'load-path "~/.emacs.d/themes/tomorrow-theme")
 ;(load-theme 'tomorrow-night-bright t)
 
-;; wombat default theme
-(load-theme 'wombat t)
+;; calamity theme
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/calamity-theme")
+(load-theme 'calamity t)
 
 ;; font settings
 (when window-system
   (set-face-font 'default "Ubuntu Mono-16"))
 
 (custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(fixed-pitch ((t nil)))
  '(variable-pitch ((t nil))))
 
