@@ -11,11 +11,6 @@
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
-;; tomorrow theme
-;(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/tomorrow-theme")
-;(add-to-list 'load-path "~/.emacs.d/themes/tomorrow-theme")
-;(load-theme 'tomorrow-night-bright t)
-
 ;; calamity theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/calamity-theme")
 (load-theme 'calamity t)
@@ -23,6 +18,14 @@
 ;; font settings
 (when window-system
   (set-face-font 'default "Ubuntu Mono-16"))
+
+;; backup files and directories
+(setq backup-directory-alist `(("." . "~/.emacs.d/.backup")))
+(setq backup-by-copying t)
+(setq delete-old-versions t
+  kept-new-versions 6
+  kept-old-versions 2
+  version-control t)
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -58,6 +61,11 @@
 ;; ensime
 (require 'ensime)
 (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
+
+;; js2-mode
+(add-to-list 'auto-mode-alist '("\\.json$" . js-mode))
+(add-to-list 'auto-mode-alist '("\\.js$" . js-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx$" . js-mode))
 
 ;; projectile
 (require 'projectile)
@@ -102,6 +110,8 @@
  '(auto-save-timeout 10)
  '(desktop-save t)
  '(desktop-save-mode t)
+ '(js2-basic-offset 2)
+ '(js2-bounce-indent-p t)
  '(show-paren-mode t)
  '(tool-bar-mode nil)
  '(visible-bell nil))
