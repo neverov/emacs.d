@@ -16,8 +16,8 @@
 (load-theme 'calamity t)
 
 ;; font settings
-(when window-system
-  (set-face-font 'default "Ubuntu Mono-16"))
+(if (window-system)
+    (set-face-font 'default "Terminus (TTF)-16:antialias=0"))
 
 ;; backup files and directories
 (setq backup-directory-alist `(("." . "~/.emacs.d/.backup")))
@@ -25,18 +25,13 @@
 (setq delete-old-versions t
   kept-new-versions 6
   kept-old-versions 2
-  version-control t)
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(fixed-pitch ((t nil)))
- '(variable-pitch ((t nil))))
+  version-control t) 
 
 ;; yes-or-no prompt
 (fset 'yes-or-no-p 'y-or-n-p)
+
+;; auto reload changed files
+(global-auto-revert-mode t)
 
 ;; ido 
 (setq ido-create-new-buffer 'always)
@@ -53,19 +48,31 @@
       (remq 'process-kill-buffer-query-function
 	    kill-buffer-query-functions))
 
+;; use spaces instead of tabs
+(setq-default indent-tabs-mode nil)
+
 ;; neotree
 (add-to-list 'load-path "~/.emacs.d/neotree")
 (require 'neotree)
 (global-set-key [f8] 'neotree-toggle)
 
+(autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
+(add-hook 'emacs-lisp-mode-hook                  #'enable-paredit-mode)
+(add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
+(add-hook 'ielm-mode-hook                        #'enable-paredit-mode)
+(add-hook 'lisp-mode-hook                        #'enable-paredit-mode)
+(add-hook 'lisp-interaction-mode-hook            #'enable-paredit-mode)
+(add-hook 'scheme-mode-hook                      #'enable-paredit-mode)
+(add-hook 'clojure-mode-hook                     #'enable-paredit-mode)
+
 ;; ensime
 (require 'ensime)
 (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 
-;; js2-mode
-(add-to-list 'auto-mode-alist '("\\.json$" . js-mode))
-(add-to-list 'auto-mode-alist '("\\.js$" . js-mode))
-(add-to-list 'auto-mode-alist '("\\.jsx$" . js-mode))
+;; jsx-mode
+(require 'jsx-mode)
+(add-to-list 'auto-mode-alist '("\\.jsx\\'" . jsx-mode))
+(autoload 'jsx-mode "jsx-mode" "JSX mode" t)
 
 ;; projectile
 (require 'projectile)
@@ -110,9 +117,33 @@
  '(auto-save-timeout 10)
  '(desktop-save t)
  '(desktop-save-mode t)
- '(js2-basic-offset 2)
- '(js2-bounce-indent-p t)
+ '(ensime-sem-high-faces
+   (quote
+    ((var . scala-font-lock:var-face)
+     (val :inherit font-lock-constant-face)
+     (varField . scala-font-lock:var-face)
+     (valField :inherit font-lock-constant-face)
+     (functionCall . font-lock-function-name-face)
+     (operator . font-lock-keyword-face)
+     (param :inherit font-lock-constant-face)
+     (class . font-lock-type-face)
+     (trait :inherit font-lock-type-face)
+     (object . font-lock-constant-face)
+     (package . font-lock-preprocessor-face))))
+ '(js-indent-level 2)
+ '(js3-consistent-level-indent-inner-bracket t)
+ '(js3-curly-indent-offset 2)
+ '(js3-expr-indent-offset 2)
+ '(js3-paren-indent-offset 2)
+ '(js3-square-indent-offset 2)
+ '(jsx-indent-level 2)
  '(show-paren-mode t)
  '(tool-bar-mode nil)
  '(visible-bell nil))
 
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
