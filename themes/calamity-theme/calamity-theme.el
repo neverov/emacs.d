@@ -3,7 +3,7 @@
 
 (custom-theme-set-faces
  'calamity
- '(default ((t (:inherit nil :background "#1d1d1d" :foreground "#f6f3e8" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :height 160 :foundry "nil" :family "Terminus (TTF)" :antialias 0))))
+ '(default ((t (:inherit nil :background "#1d1d1d" :foreground "#f6f3e8" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :height 160 :foundry "nil" :family "Terminus (TTF)" :antialias nil))))
  '(cursor ((t (:background "#3CC2C1"))))
  '(fixed-pitch ((t nil)))
  '(variable-pitch ((t nil)))
@@ -25,7 +25,7 @@
  '(font-lock-preprocessor-face ((t (:inherit (font-lock-builtin-face)))))
  '(font-lock-regexp-grouping-backslash ((t (:inherit (bold)))))
  '(font-lock-regexp-grouping-construct ((t (:inherit (bold)))))
- '(font-lock-string-face ((t (:foreground "#2F8786"))))
+ '(font-lock-string-face ((t (:foreground "#f6f3e8"))))
  '(font-lock-type-face ((t (:foreground "#878cb7"))))
  '(font-lock-variable-name-face ((t (:foreground "#f6f3e8"))))
  '(font-lock-warning-face ((t (:foreground "#ccaa8f"))))

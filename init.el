@@ -11,21 +11,18 @@
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
+(setenv "PATH" (concat "/usr/local/bin/sbt/bin:" (getenv "PATH")))
+(setenv "PATH" (concat "/usr/local/bin/scala/bin:" (getenv "PATH")))
+
 ;; calamity theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/calamity-theme")
 (load-theme 'calamity t)
 
-;; font settings
-(if (window-system)
-    (set-face-font 'default "Terminus (TTF)-16:antialias=0"))
-
 ;; backup files and directories
-(setq backup-directory-alist `(("." . "~/.emacs.d/.backup")))
-(setq backup-by-copying t)
-(setq delete-old-versions t
-  kept-new-versions 6
-  kept-old-versions 2
-  version-control t) 
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
 
 ;; yes-or-no prompt
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -64,6 +61,12 @@
 (add-hook 'lisp-interaction-mode-hook            #'enable-paredit-mode)
 (add-hook 'scheme-mode-hook                      #'enable-paredit-mode)
 (add-hook 'clojure-mode-hook                     #'enable-paredit-mode)
+
+;; web mode
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(setq web-mode-enable-auto-pairing t)
+(setq web-mode-enable-current-element-highlight t)
 
 ;; ensime
 (require 'ensime)
@@ -146,4 +149,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:inherit nil :stipple nil :background "#1d1d1d" :foreground "#f6f3e8" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 160 :width normal :foundry "nil" :family "Ubuntu Mono")))))
