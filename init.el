@@ -43,7 +43,7 @@
 ;; kill buffers prompt
 (setq kill-buffer-query-functions
       (remq 'process-kill-buffer-query-function
-	    kill-buffer-query-functions))
+            kill-buffer-query-functions))
 
 ;; use spaces instead of tabs
 (setq-default indent-tabs-mode nil)
