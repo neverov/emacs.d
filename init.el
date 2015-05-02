@@ -11,8 +11,20 @@
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
-(setenv "PATH" (concat "/usr/local/bin/sbt/bin:" (getenv "PATH")))
-(setenv "PATH" (concat "/usr/local/bin/scala/bin:" (getenv "PATH")))
+(set-mouse-color "white")
+
+(global-set-key [(hyper a)] 'mark-whole-buffer)
+(global-set-key [(hyper v)] 'yank)
+(global-set-key [(hyper x)] 'kill-region)
+(global-set-key [(hyper c)] 'kill-ring-save)
+(global-set-key [(hyper s)] 'save-buffer)
+(global-set-key [(hyper w)]
+                  (lambda () (interactive) (kill-buffer)))
+(global-set-key [(hyper z)] 'undo)
+(global-set-key [(hyper k)] 'cider-repl-clear-buffer)
+
+(setq mac-option-modifier 'meta)
+(setq mac-command-modifier 'hyper)
 
 ;; calamity theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/calamity-theme")
@@ -29,6 +41,17 @@
 
 ;; auto reload changed files
 (global-auto-revert-mode t)
+
+;; long lines mode
+(setq toggle-truncate-lines t)
+
+;; turn on horizontal scrolling with mouse wheel
+(global-set-key [wheel-left] '(lambda ()
+                                (interactive)
+                                (scroll-right 1)))
+(global-set-key [wheel-right] '(lambda ()
+                                 (interactive)
+                                 (scroll-left 1)))
 
 ;; ido 
 (setq ido-create-new-buffer 'always)
@@ -56,21 +79,23 @@
 (add-hook 'lisp-interaction-mode-hook            #'enable-paredit-mode)
 (add-hook 'scheme-mode-hook                      #'enable-paredit-mode)
 (add-hook 'clojure-mode-hook                     #'enable-paredit-mode)
+(add-hook 'cider-repl-mode-hook                  #'enable-paredit-mode)
 
 ;; web mode
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.js?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx?\\'" . web-mode))
 (setq web-mode-enable-auto-pairing t)
 (setq web-mode-enable-current-element-highlight t)
+(web-mode-set-content-type "jsx")
+(add-hook 'web-mode-hook
+          (lambda ()
+            (web-mode-set-content-type "jsx")))
 
 ;; ensime
 (require 'ensime)
 (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
-
-;; jsx-mode
-(require 'jsx-mode)
-(add-to-list 'auto-mode-alist '("\\.jsx\\'" . jsx-mode))
-(autoload 'jsx-mode "jsx-mode" "JSX mode" t)
 
 ;; projectile
 (require 'projectile)
@@ -98,14 +123,6 @@
 	  (lambda ()
 	    (save-some-buffers t)))
 
-;; smooth-scrolling
-(setq redisplay-dont-pause t
-      scroll-margin 7
-      scroll-step 1
-      scroll-conservatively 10000
-      scroll-preserve-screen-position 1
-      mouse-wheel-scroll-amount '(1 ((shift) . 1)))
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -128,17 +145,15 @@
      (trait :inherit font-lock-type-face)
      (object . font-lock-constant-face)
      (package . font-lock-preprocessor-face))))
- '(js-indent-level 2)
- '(js3-consistent-level-indent-inner-bracket t)
- '(js3-curly-indent-offset 2)
- '(js3-expr-indent-offset 2)
- '(js3-paren-indent-offset 2)
- '(js3-square-indent-offset 2)
- '(jsx-indent-level 2)
+ '(minimap-buffer-name-prefix "*M*")
+ '(minimap-update-delay 0.1)
+ '(minimap-window-location (quote right))
  '(show-paren-mode t)
  '(tool-bar-mode nil)
  '(visible-bell nil)
+ '(web-mode-block-padding 0)
  '(web-mode-code-indent-offset 2)
+ '(web-mode-enable-control-block-indentation nil)
  '(web-mode-markup-indent-offset 2))
 
 (custom-set-faces
@@ -146,4 +161,5 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#1d1d1d" :foreground "#f6f3e8" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight light :height 160 :width normal :foundry "nil" :family "Fira Mono")))))
+ '(default ((t (:inherit nil :stipple nil :background "#1d1d1d" :foreground "#f6f3e8" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight light :height 160 :width normal :foundry "nil" :family "Fira Mono" :antialias "natural")))))
+
