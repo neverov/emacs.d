@@ -27,6 +27,7 @@
 (global-set-key [(hyper right)] 'move-end-of-line)
 (global-set-key [(hyper f)] 'isearch-forward)
 
+;; remap emacs modifier to mac keys
 (setq mac-option-modifier 'meta)
 (setq mac-command-modifier 'hyper)
 
@@ -56,6 +57,11 @@
 (global-set-key [wheel-right] '(lambda ()
                                  (interactive)
                                  (scroll-left 1)))
+
+;; ido-vertical-mode
+(require 'ido-vertical-mode)
+(ido-mode 1)
+(ido-vertical-mode 1)
 
 ;; ido 
 (setq ido-create-new-buffer 'always)
