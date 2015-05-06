@@ -11,17 +11,21 @@
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
+;; fixes strange cursor appearance on MacBook Air
 (set-mouse-color "white")
 
+;; define some common mac bindings
 (global-set-key [(hyper a)] 'mark-whole-buffer)
 (global-set-key [(hyper v)] 'yank)
 (global-set-key [(hyper x)] 'kill-region)
 (global-set-key [(hyper c)] 'kill-ring-save)
 (global-set-key [(hyper s)] 'save-buffer)
-(global-set-key [(hyper w)]
-                  (lambda () (interactive) (kill-buffer)))
+(global-set-key [(hyper w)] (lambda () (interactive) (kill-buffer)))
 (global-set-key [(hyper z)] 'undo)
 (global-set-key [(hyper k)] 'cider-repl-clear-buffer)
+(global-set-key [(hyper left)] 'move-beginning-of-line)
+(global-set-key [(hyper right)] 'move-end-of-line)
+(global-set-key [(hyper f)] 'isearch-forward)
 
 (setq mac-option-modifier 'meta)
 (setq mac-command-modifier 'hyper)
