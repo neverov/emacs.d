@@ -14,6 +14,10 @@
 ;; fixes strange cursor appearance on MacBook Air
 (set-mouse-color "white")
 
+;; unicode symbol for long dash (en dash)
+(defconst en-dash 
+  (decode-char 'ucs #x2013))
+
 ;; define some common mac bindings
 (global-set-key [(hyper a)] 'mark-whole-buffer)
 (global-set-key [(hyper v)] 'yank)
@@ -26,6 +30,8 @@
 (global-set-key [(hyper left)] 'move-beginning-of-line)
 (global-set-key [(hyper right)] 'move-end-of-line)
 (global-set-key [(hyper f)] 'isearch-forward)
+(global-set-key [(hyper t)] 'projectile-find-file)
+(global-set-key [(meta -)] (lambda () (interactive) (insert en-dash)))
 
 ;; remap emacs modifier to mac keys
 (setq mac-option-modifier 'meta)
