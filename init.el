@@ -47,6 +47,10 @@
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
 
+;; wakatime mode
+(require 'wakatime-mode)
+(global-wakatime-mode)
+
 ;; yes-or-no prompt
 (fset 'yes-or-no-p 'y-or-n-p)
 
@@ -167,6 +171,8 @@
  '(show-paren-mode t)
  '(tool-bar-mode nil)
  '(visible-bell nil)
+ '(wakatime-api-key "98486110-5b0f-46a1-941a-9232af2fd1de")
+ '(wakatime-cli-path "/usr/local/bin/wakatime")
  '(web-mode-block-padding 0)
  '(web-mode-code-indent-offset 2)
  '(web-mode-enable-control-block-indentation nil)
